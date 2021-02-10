@@ -271,3 +271,12 @@ def register_all_pascal_voc(root="datasets"):
 register_all_coco()
 register_all_lvis()
 register_all_pascal_voc()
+
+from detectron2.data.datasets import register_coco_instances
+json_dir = 'datasets/coco_experiments/seed1/full_box_30shot_person_trainval.json'
+image_dir = 'datasets/coco/trainval2014'
+register_coco_instances("30shot_person_train", {}, json_dir, image_dir)
+
+json_dir = 'datasets/coco_experiments/seed1/full_box_1000shot_person_test.json'
+image_dir = 'datasets/coco/trainval2014'
+register_coco_instances("1000shot_person_test", {}, json_dir, image_dir)

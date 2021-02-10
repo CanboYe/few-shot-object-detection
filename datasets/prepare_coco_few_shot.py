@@ -13,7 +13,7 @@ def parse_args():
 
 
 def generate_seeds(args):
-    data_path = 'datasets/cocosplit/datasplit/trainvalno5k.json'
+    data_path = 'datasets/cocosplit/datasplit/5k.json'
     data = json.load(open(data_path))
 
     new_all_cats = []
