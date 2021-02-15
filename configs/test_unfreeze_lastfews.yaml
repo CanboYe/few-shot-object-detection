@@ -1,0 +1,31 @@
+_BASE_: "./Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "checkpoints/coco/faster_rcnn/30shot_person_unfreeze_lastfews/model_final.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 101
+  ROI_HEADS:
+    NUM_CLASSES: 1
+#     FREEZE_FEAT: True
+#   BACKBONE:
+#     FREEZE: True
+#   PROPOSAL_GENERATOR:
+#     FREEZE: True
+DATASETS:
+  TRAIN: ('30shot_person_train',)
+  TEST: ('1000shot_person_test',)
+SOLVER:
+#   IMS_PER_BATCH: 16
+#   BASE_LR: 0.01
+#   STEPS: (10000,)
+#   MAX_ITER: 1500
+#   CHECKPOINT_PERIOD: 500
+#   WARMUP_ITERS: 0
+  
+  IMS_PER_BATCH: 16
+  BASE_LR: 0.001
+  STEPS: (36000,)
+  MAX_ITER: 5000
+  CHECKPOINT_PERIOD: 1000
+  WARMUP_ITERS: 10
+OUTPUT_DIR: "checkpoints/coco/faster_rcnn/test_0215"
