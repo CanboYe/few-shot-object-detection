@@ -37,3 +37,4 @@ configs/*/*/seed*/*
 .vscode-upload.json
 .mypy_cache
 models/
+image_results/

@@ -273,10 +273,39 @@ register_all_lvis()
 register_all_pascal_voc()
 
 from detectron2.data.datasets import register_coco_instances
-json_dir = 'datasets/coco_experiments/seed1/full_box_30shot_person_trainval.json'
+json_dir = 'datasets/coco_experiments/seed1/full_box_30shot_person_train.json'
 image_dir = 'datasets/coco/trainval2014'
 register_coco_instances("30shot_person_train", {}, json_dir, image_dir)
 
-json_dir = 'datasets/coco_experiments/seed1/full_box_1000shot_person_test.json'
+json_dir = 'datasets/coco_experiments/seed1/full_box_30shot_bicycle_train.json'
+image_dir = 'datasets/coco/trainval2014'
+register_coco_instances("30shot_bicycle_train", {}, json_dir, image_dir)
+
+json_dir = 'datasets/coco_experiments/seed1/full_box_30shot_horse_train.json'
+image_dir = 'datasets/coco/trainval2014'
+register_coco_instances("30shot_horse_train", {}, json_dir, image_dir)
+
+json_dir = 'datasets/coco_experiments/seed1/full_box_30shot_airplane_train.json'
+image_dir = 'datasets/coco/trainval2014'
+register_coco_instances("30shot_airplane_train", {}, json_dir, image_dir)
+
+
+json_dir = 'datasets/coco_experiments/seed1/full_box_500shot_person_train.json'
+image_dir = 'datasets/coco/trainval2014'
+register_coco_instances("500shot_person_train", {}, json_dir, image_dir)
+
+json_dir = 'datasets/coco_experiments/seed1/full_box_500shot_bicycle_train.json'
+image_dir = 'datasets/coco/trainval2014'
+register_coco_instances("500shot_bicycle_train", {}, json_dir, image_dir)
+
+json_dir = 'datasets/coco_experiments/seed1/full_box_500shot_horse_train.json'
+image_dir = 'datasets/coco/trainval2014'
+register_coco_instances("500shot_horse_train", {}, json_dir, image_dir)
+
+json_dir = 'datasets/coco_experiments/seed1/full_box_500shot_airplane_train.json'
+image_dir = 'datasets/coco/trainval2014'
+register_coco_instances("500shot_airplane_train", {}, json_dir, image_dir)
+
+json_dir = 'datasets/coco_experiments/old/seed1/full_box_1000shot_person_test.json'
 image_dir = 'datasets/coco/trainval2014'
 register_coco_instances("1000shot_person_test", {}, json_dir, image_dir)

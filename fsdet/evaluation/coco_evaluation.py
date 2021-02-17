@@ -232,7 +232,14 @@ class COCOEvaluator(DatasetEvaluator):
             "Evaluation results for {}: \n".format(iou_type) + \
                 create_small_table(results)
         )
-
+        
+        precisions = coco_eval.eval["precision"]
+        # precision has dims (iou, recall, cls, area range, max dets)
+        assert len(class_names) == precisions.shape[2]
+        
+        print('Now trying to plot PR curve')
+        plot_pr_curve(precisions)
+        
         if class_names is None or len(class_names) <= 1:
             return results
         # Compute per-category AP
@@ -240,7 +247,7 @@ class COCOEvaluator(DatasetEvaluator):
         precisions = coco_eval.eval["precision"]
         # precision has dims (iou, recall, cls, area range, max dets)
         assert len(class_names) == precisions.shape[2]
-
+        
         results_per_category = []
         for idx, name in enumerate(class_names):
             # area range index 0: all area ranges
@@ -316,3 +323,15 @@ def _evaluate_predictions_on_coco(coco_gt, coco_results, iou_type, catIds=None):
     coco_eval.summarize()
 
     return coco_eval
+
+def plot_pr_curve(precisions):
+    import matplotlib.pyplot as plt
+    pr_array = precisions[0, :, 0, 0, 2] # IOU=0.5, recall=0:101, class_id=0, area=all, maxDets=100
+    x = np.arange(0.0, 1.01, 0.01)
+    plt.xlabel('recall')
+    plt.ylabel('precision')
+    plt.xlim(0, 1.0)
+    plt.ylim(0, 1.01)
+    plt.grid(True)
+    plt.plot(x, pr_array)
+    plt.show()
